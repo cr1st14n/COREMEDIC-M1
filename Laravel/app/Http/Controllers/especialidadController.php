@@ -23,7 +23,8 @@ class especialidadcontroller extends Controller
      */
     public function index()
     {   
-        $especialidades=DB::table('especialidad')->get();
+        // $especialidades=DB::table('especialidad')->get();
+        $especialidades=especialidad::get();
         return view('ViewAdm.FormRegistroEspecialidad')->with("especialidades",$especialidades);
     }
 
@@ -38,8 +39,9 @@ class especialidadcontroller extends Controller
 
         $data=Request()->all();
         $especialidad = new especialidad;
-        $especialidad->nombre = $data["nombre"];
-        $especialidad->descripcion = $data["descripcion"];
+        $especialidad->esp_nombre = $data["esp_nombre"];
+        $especialidad->esp_detalle = $data["esp_detalle"];
+        $especialidad->esp_costo = $data["esp_costo"];
 
         $resul=$especialidad->save();
         if($resul){
@@ -59,8 +61,9 @@ class especialidadcontroller extends Controller
     {
         return Validator::make($data, [
             
-            'nombre' => 'required|string|max:50|unique:especialidad',
-            'descripcion' => 'string|max:200|nullable',
+            'esp_nombre' => 'required|string|max:50|',
+            'esp_detalle' => 'required|string|max:50|',
+            'esp_costo' => 'string|max:200|nullable',
 
         ]);
     }
@@ -68,8 +71,9 @@ class especialidadcontroller extends Controller
     {
         return Validator::make($data, [
             
-            'nombre' => 'required|string|max:50',
-            'descripcion' => 'string|max:200|nullable',
+            'esp_nombre' => 'required|string|max:50',
+            'esp_detalle' => 'required|string|max:50',
+            'esp_costo' => 'string|max:200|nullable',
 
         ]);
     }
@@ -118,8 +122,8 @@ class especialidadcontroller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   $especialidades=DB::table('especialidad')->get();
-        $especialidad=DB::table('especialidad')->where('id', $id)->first();
+    {   $especialidades=especialidad::get();
+        $especialidad=especialidad::where('id', $id)->first();
         return view('ViewAdm.FormEditEspecialidad')->with("especialidades",$especialidades)->with("especialidad",$especialidad);
 
     }
@@ -147,8 +151,9 @@ class especialidadcontroller extends Controller
         $this->validator_edit($request->all())->validate();
         $data=Request()->all();
         $resul=DB::table('Especialidad')->where('id',$data["id"])
-                            ->update(['nombre'=>$data["nombre"],
-                                      'descripcion'=>$data["descripcion"]
+                            ->update(['esp_nombre'=>$data["esp_nombre"],
+                                      'esp_detalle'=>$data["esp_detalle"],
+                                      'esp_costo'=>$data["esp_costo"]
                         ]);
         if($resul){
             \Session::flash('flash_message_correcto', 'Especialidad actualizada exitosamente.');

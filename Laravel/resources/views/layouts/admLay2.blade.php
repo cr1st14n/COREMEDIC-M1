@@ -100,6 +100,8 @@
                 </li>
                 <li><a href="#" id="btn_index_pre_cotizaciones"><i class="icon fa fa-file"></i>Pre-Cotizaciones</a></li>
                 <li><a href="#" id="btn_index_descargosQuiEndo"><i class="icon fa fa-file"></i>Descargos Medicos</a></li>
+                <li class="Label label-lg  text-center" >Areas y Servicios</li>
+				<li><a href="{{route('formNewEspecialidad')}} "><i class="icon  fa fa-th"></i> Especialidades</a></li>
             </ul>
         </nav>
 

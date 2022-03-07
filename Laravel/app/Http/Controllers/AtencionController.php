@@ -10,6 +10,7 @@ use App\Pacientes;
 use App\atencion;
 use App\PersonalSalud;
 use App\especialidad;
+use App\User;
 use DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,7 @@ class AtencionController extends Controller
             $turno = 'Mañana';
         }
 
-        $especialidad = DB::table('especialidad')->orderBy('nombre')->get();
+        $especialidad = DB::table('especialidad')->orderBy('esp_nombre')->get();
         //$medico= DB::table('users')->where('usu_tipo','medio')->get();
         $medico = PersonalSalud::select('id', 'ps_appaterno', 'ps_apmaterno', 'ps_nombre')->orderBy('ps_appaterno')->get();
         //$paciente=Pacientes::where('pa_hcl','//');
@@ -483,25 +484,48 @@ class AtencionController extends Controller
         ];
         // return $data['at_especialidad'];
         // return $request;
-        
-        
 
-        $new=new atencion;
-        $new->usu_ci=Auth::user()->id;
-        $new->pa_id=$request['paciente'];
-        $new->ate_especialidad=$data['at_especialidad'];
-        $new->ate_procedimiento=$data['ate_Procedimiento'];
-        $new->ate_med=$data['ate_medCit'];
-        $new->ate_descripcion=$data['ate_observacion'];
-        $new->ate_turno=$data['ate_turno'];
-        $new->ate_num_ticked=$data['ate_ticked'];
-        $new->ate_pago=(array_key_exists('6',$request['data'])) ? 'cancelado' : 'pendiente' ;
-        $new->ate_estAteMed=0;
-        $new->ate_fecha=Carbon::now()->format('Y-m-d');
+
+
+        $new = new atencion;
+        $new->usu_ci = Auth::user()->id;
+        $new->pa_id = $request['paciente'];
+        $new->ate_especialidad = $data['at_especialidad'];
+        $new->ate_procedimiento = $data['ate_Procedimiento'];
+        $new->ate_med = $data['ate_medCit'];
+        $new->ate_descripcion = $data['ate_observacion'];
+        $new->ate_turno = $data['ate_turno'];
+        $new->ate_num_ticked = $data['ate_ticked'];
+        // $new->ate_pago = (array_key_exists('6', $request['data'])) ? 'cancelado' : 'pendiente';
+        $new->ate_pago = 'cancelado';
+        $new->ate_estAteMed = 0;
+        $new->ate_fecha = Carbon::now()->format('Y-m-d');
         // * datos de auditoria 
-        $new->ca_fecha=Carbon::now()->format('Y-m-d');
-        $res=$new->save();
-        return $res = (true) ? 1 : 0 ;
-       
+        $new->ca_fecha = Carbon::now()->format('Y-m-d');
+        $res = $new->save();
+        return $res = (true) ? ['res'=>1,'data'=>$new->id] : ['res'=>0];
+    }
+    public function createAteNotaAte(Request $request)
+    {
+        // return $request->id;
+
+        $atencion=atencion::where('id',$request->input('id'))->first();
+        $esp=especialidad::where('id',$atencion->ate_especialidad)->first();
+        $med=User::where('id',$atencion->ate_med)->first();
+        $paciente=Pacientes::where('pa_id',$atencion->pa_id)->first();
+
+        $date = Carbon::now()->format('m-d-Y');
+        $time = Carbon::now()->format('h:m a');
+        $cantidadProductos = "0";
+        $costoTotal = "0";
+        
+        
+        return view('factura.notaFR_1')
+            ->with('esp', $esp)
+            ->with('med', $med)
+            ->with('paciente', $paciente)
+            ->with('atencion', $atencion)
+            ->with('date', $date)
+            ->with('time', $time); 
     }
 }

@@ -124,6 +124,7 @@ Route::group(['middleware' => ['recepcion'], 'prefix' => '/Recepcion'], function
 	Route::group(['prefix' => '/paciente'], function () {
 		Route::get('index', 'PacienteController@index')->name('index_paciente');
 		Route::post('register', 'PacienteController@create')->name('register_paciente');
+		Route::post('register1', 'PacienteController@create1');
 		Route::get('buscar', 'PacienteController@formBuscarPaciente')->name('form_buscar_paciente');
 		Route::any('search', 'PacienteController@buscar')->name('buscar_paciente');
 		Route::post('PrintHCL', 'PacienteController@print_HCl')->name('print_HCl');
@@ -145,6 +146,7 @@ Route::group(['middleware' => ['recepcion'], 'prefix' => '/Recepcion'], function
 		Route::get('pagar_ate/{id} ', 'AtencionController@pago')->name('recep_pago');
 		//* ----- rutaV2
 		Route::post('createAte1','AtencionController@createAte1');
+		Route::get('createAteNotaAte','AtencionController@createAteNotaAte');
 	});
 	Route::group(['prefix'=>'citaPrevia'],function (){
 		Route::get('infoPaci','CitPrevController@infoPaci');

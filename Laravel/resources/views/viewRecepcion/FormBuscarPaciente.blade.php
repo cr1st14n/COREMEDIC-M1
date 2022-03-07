@@ -167,7 +167,7 @@
                             <div class="form-group">
                                 <label class="control-label">Especialidad:</label>
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <select required="" name="at_especialidad" class=" form-control show-menu-arrow" data-style="btn-theme-inverse" id="selecEspecialidad">
@@ -179,45 +179,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">Procedimiento</label>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <ul class="iCheck" data-color="blue">
-                                            <li>
-                                                <input type="radio" name="ate_Procedimiento" value="Consulta" checked="true">
-                                                <label class=""> Consulta</label>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="ate_Procedimiento" value="Control">
-                                                <label class="">Control </label>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="ate_Procedimiento" value="Emergencias">
-                                                <label class="">Emergencias</label>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <ul class="iCheck" data-color="blue">
-                                            <li>
-                                                <input type="radio" name="ate_Procedimiento" value="Curacion Mayor">
-                                                <label class="">CRN Mayor</label>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="ate_Procedimiento" value="Curacion Menor">
-                                                <label class="">CRN Menor</label>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="ate_Procedimiento" value="Enfermeria">
-                                                <label class="">Enfermeria</label>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                           
                             <div class="form-group">
                                 <label class="control-label">Medico Asignado</label>
                                 <div class="row">
@@ -228,13 +190,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="ticked" class="col-md-4 control-label"> # de ticked</label>
-                                <div class="col-md-3">
-                                    <input type="number" class="form-control" placeholder="# ticked" id="ate_ticked" name="ate_ticked" required="" autocomplete="off"></input>
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <label class="control-label">Turno T/M</label>
                                 <div class="row">
@@ -253,24 +208,6 @@
                                         <textarea id="ate_observacion" name="ate_observacion" cols="30" rows="2" require></textarea>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <!-- <label class="control-label">Registrar como pagado</label> -->
-                                <div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <ul class="" data-color="red">
-                                                <li>
-                                                    
-                                                    <label><input type="checkbox" name="est_pagado" id="inp_estPagado_A"> Registrar como cancelado</label>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                    </div><!-- //row-->
-                                </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -437,6 +374,8 @@
 @endsection
 @section('scripts')
 <script type="text/javascript" src="{{ asset('/asincrono/pacientes.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/asincrono/paciente_2.js') }}"></script>
+
 @endsection
 
 @section('head1')

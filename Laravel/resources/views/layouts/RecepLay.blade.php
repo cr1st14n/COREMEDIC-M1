@@ -115,7 +115,8 @@
 				<li><a href="{{route('recepcion.home')}} "><span><i class="icon fa fa-home"></i> Inicio </span></a></li>
 				<li class="Label label-lg  text-center"> Gestionar Pacientes</li>
 				<li><a href="{{route('form_buscar_paciente')}} "><span><i class="icon fa fa-search"></i> Buscar Paciente</span></a></li>
-				<li><a href="{{route('index_paciente')}} "><span><i class="icon fa fa-pencil"></i> Afiliar Paciente</span></a></li>
+				<!-- <li><a href="{{route('index_paciente')}} "><span><i class="icon fa fa-pencil"></i> Afiliar Paciente</span></a></li> -->
+				<li><a href="#" onclick="registerPaciente_1()"><span><i class="icon fa fa-pencil"></i> Afiliar Paciente</span></a></li>
 
 
 				<li class="Label label-lg text-center">Gestionar Atencion</li>
@@ -155,7 +156,306 @@
 			</ul>
 		</nav>
 		<!-- //nav right menu-->
+		<div id="md-form_create_paciente" class="modal fade md-stickTop " tabindex="-1" data-width="900">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times" id=""></i></button>
+				<h2><strong>Registro </strong>Nuevo Paciente</h2>
+			</div>
+			<div class="row">
+				<form id="form_registerPaciente">
+					<div class="col-lg-6">
+						{{ csrf_field() }}
+						<section class="panel">
+							<header class="panel-heading sm" data-color="theme-inverse">
+								<h2>Datos personales</h2>
+							</header>
+							<div class="panel-tools color" align="right" data-toolscolor="#4EA582">
+							</div>
+							<div class="panel-body">
+								<div class="form-horizontal" data-collabel="3" data-alignlabel="center">
+									<div class="form-group">
+										<label for="pa_ci" class="col-md-4 control-label">C.I./C.N.</label>
+										<div class="col-md-6">
+											<input id="pa_ci" type="text" class="form-control rounded" placeholder="Carnet o Certificado de nacimiento" name="pa_ci" maxlength="10" data-always-show="true" onkeypress="return soloNu(event)" onblur="limpia()">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Nombre </label>
+										<div>
+											<input id="pa_nombre" name="pa_nombre" type="text" class="form-control rounded" maxlength="30" data-always-show="false" onkeypress="return soloLe(event)" onblur="limpia()" required>
 
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Apellido paterno</label>
+										<div>
+											<input id="pa_appaterno" name="pa_appaterno" type="text" class="form-control rounded" maxlength="30" data-always-show="false" onkeypress="return soloLe(event)" onblur="limpia()" required>
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Apellido materno</label>
+										<div>
+											<input id="pa_apmaterno" name="pa_apmaterno" type="text" class="form-control rounded" maxlength="30" data-always-show="false" onkeypress="return soloLe(event)" onblur="limpia()">
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Fecha de nacimiento</label>
+										<div>
+											<input id="pa_fechnac" name="pa_fechnac" type="date" class="form-control rounded" maxlength="30" data-always-show="false" required="date">
+
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Sexo</label>
+										<div>
+											<ul class="iCheck" data-color="red">
+												<li><input type="radio" name="pa_sexo" value="M" required="">
+													<label>masculino</label>
+												</li>
+												<li><input type="radio" name="pa_sexo" value="F" required="">
+													<label>femenino</label>
+												</li>
+											</ul>
+										</div>
+
+									</div>
+									<div class="form-group">
+										<label class="control-label">Pais de nacimiento</label>
+										<div class="col-md-6">
+											<input id="pa_pais_nac" name="pa_pais_nac" value="" type="text" class="form-control rounded" maxlength="30" onkeypress="return soloLe(event)" onblur="limpia()">
+
+
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Ciudad de nacimiento</label>
+										<div class="col-md-6">
+											<input id="pa_ciudad_nac" name="pa_ciudad_nac" type="text" class="form-control rounded" maxlength="30" onkeypress="return soloLe(event)" onblur="limpia()">
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</section>
+					</div>
+
+					<!-- seguada columna -->
+					<div class="col-lg-6">
+						<section class="panel">
+							<header class="panel-heading sm" data-color="theme-inverse">
+								<h2>Datos referenciales</h2>
+							</header>
+							<div class="panel-tools color" align="right" data-toolscolor="#4EA582">
+							</div>
+							<div class="panel-body">
+								<div class="form-horizontal" data-collabel="3" data-alignlabel="center">
+									<div class="form-group">
+										<label class="control-label">Estado Civil</label>
+
+										<div class="col-md-6">
+											<select id="pa_estado_civil" name="pa_estado_civil" class=" form-control show-menu-arrow" data-style="btn-theme-inverse" required>
+												<option selected="true" value="Null">Seleccionar</option>
+
+												<option value="Soltero">Soltero</option>
+												<option value="Casado">Casado</option>
+												<option value="Viudo">Viudo</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Telf/Cel:</label>
+										<div>
+											<input id="pa_telf" name="pa_telf" type="text" class="form-control rounded" maxlength="11" data-always-show="false" onkeypress="return soloNu(event)" onblur="limpia()">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Zona:</label>
+										<div class="col-md-6">
+											<input id="pa_zona" name="pa_zona" value="{{ old('pa_zona') }}" type="text" class="form-control rounded" maxlength="30" onkeypress="return soloLeNu(event)" onblur="limpia()">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Domicilio:</label>
+										<div>
+											<input id="pa_domicilio" name="pa_domicilio" value="{{ old('pa_domicilio') }}" type="text" class="form-control rounded" maxlength="200" onkeypress="return soloLeNu(event)" onblur="limpia()">
+										</div>
+									</div>
+									<footer class="panel-footer">
+										<button type="submit" class="btn btn-theme-inverse btn-block">Registrar</button>
+									</footer>
+								</div>
+						</section>
+				</form>
+			</div>
+		</div>
+		<div id="md-form_create_cita_1" class="modal fade md-stickTop " tabindex="-1" data-width="900">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times" id=""></i></button>
+				<h2><strong>Registro </strong>Atención Medica</h2>
+			</div>
+			<div class="row">
+				<div class="col-lg-5">
+					<div class=" panel-body">
+						<table class="table table-bordered">
+							<tbody id="contendJS_datoPaciente_1">
+								<tr>
+									<td># HCL:</td>
+									<td>--</td>
+								</tr>
+								<tr>
+									<td>Paciente:</td>
+									<td>--</td>
+								</tr>
+								<tr>
+									<td>C.I.:</td>
+									<td>--</td>
+								</tr>
+								<tr>
+									<td>Sexo:</td>
+									<td>--</td>
+								</tr>
+								<tr>
+									<td>Fecha de Nacimiento:</td>
+									<td>--</td>
+								</tr>
+								<tr>
+									<td>Edad:</td>
+									<td>--</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<form id="ate_formCreateCitPrev_1">
+						<input type="number" id="id_paciente_create_citPrev" hidden>
+						<div class="modal-body">
+							<div class="panel-body">
+								<div class="form-horizontal" data-collabel="3" data-alignlabel="center">
+									<div class="form-group">
+										<label class="control-label">Especialidad:</label>
+										<div class="row">
+											<div class="col-md-8">
+												<div class="row">
+													<div class="col-lg-12">
+														<select required="" name="at_especialidad" class=" form-control show-menu-arrow" data-style="btn-theme-inverse" id="selecEspecialidad_1">
+															<option selected="true" disabled="disabled">Seleccioasdf2222nar</option>
+														</select>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Procedimiento</label>
+										<div class="row">
+											<div class="col-lg-6">
+												<ul class="iCheck" data-color="blue">
+													<li>
+														<input type="radio" name="ate_Procedimiento" value="Consulta" checked="true">
+														<label class=""> Consulta</label>
+													</li>
+													<li>
+														<input type="radio" name="ate_Procedimiento" value="Control">
+														<label class="">Control </label>
+													</li>
+													<li>
+														<input type="radio" name="ate_Procedimiento" value="Emergencias">
+														<label class="">Emergencias</label>
+													</li>
+
+												</ul>
+											</div>
+											<div class="col-lg-6">
+												<ul class="iCheck" data-color="blue">
+													<li>
+														<input type="radio" name="ate_Procedimiento" value="Curacion Mayor">
+														<label class="">CRN Mayor</label>
+													</li>
+													<li>
+														<input type="radio" name="ate_Procedimiento" value="Curacion Menor">
+														<label class="">CRN Menor</label>
+													</li>
+													<li>
+														<input type="radio" name="ate_Procedimiento" value="Enfermeria">
+														<label class="">Enfermeria</label>
+													</li>
+
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Medico Asignado</label>
+										<div class="row">
+											<div class="col-md-12">
+												<select id="ate_medCit_1" name="ate_medCit" class="form-control" data-size="10" required="">
+													<option selected="true" disabled="disabled">Buscar medico</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="ticked" class="col-md-4 control-label"> # de ticked</label>
+										<div class="col-md-3">
+											<input type="number" class="form-control" placeholder="# ticked" id="ate_ticked" name="ate_ticked" required="" autocomplete="off"></input>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label">Turno T/M</label>
+										<div class="row">
+											<div class="col-md-6">
+												<select id="ate_turno" name="ate_turno" class=" form-control show-menu-arrow" data-style="btn-theme-inverse">
+													<option value="Mañana">Mañana</option>
+													<option value="Tarde">Tarde</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Observacion</label>
+										<div class="row">
+											<div class="col-md-6">
+												<textarea id="ate_observacion" name="ate_observacion" cols="30" rows="2" require></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<!-- <label class="control-label">Registrar como pagado</label> -->
+										<div>
+											<div class="row">
+												<div class="col-sm-6">
+													<ul class="" data-color="red">
+														<li>
+
+															<label><input type="checkbox" name="est_pagado" id="inp_estPagado_A_1"> Registrar como cancelado</label>
+														</li>
+													</ul>
+												</div>
+
+											</div><!-- //row-->
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<footer class="panel-footer" align="right">
+							<button type="submit" class="btn btn-theme-inverse btn-block">Agendar Turno</button>
+							<!-- <button type="reset" class="btn" onclick="clearForm(this.form);"> Limpiar Formulario</button> -->
+						</footer>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	</div>
 	<!-- //wrapper-->
@@ -193,11 +493,14 @@
 	<script src="{{asset('moment/min/moment.min.js')}}"></script>
 	<!-- scripts propios del sistema-->
 	<script type="text/javascript" src="{{ asset('/asincrono/homeJs.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/asincrono/paciente_2.js') }}"></script>
 
 	@yield('scripts')
 	<script type="text/javascript">
 		$('div.alert').delay(4000).slideUp(300);
 	</script>
+
+	
 	<script>
 		function soloLe(e) {
 			key = e.keyCode || e.which;
