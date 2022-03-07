@@ -369,7 +369,7 @@ function showAtender(id) {
       htmlEsp = r.esp
         .map(function (e) {
           return (h = `
-        <option value='${e.id}' >${e.nombre}</option>
+        <option value='${e.id}' >${e.esp_nombre } - ${e.esp_detalle} - ${e.esp_costo} Bs.-</option>
         `);
         })
         .join(" ");
@@ -413,7 +413,7 @@ function showAtender(id) {
       $("#selecEspecialidad").html(htmlEsp);
       $("#ate_medCit").html(htmlMed);
       $("#contendJS_datoPaciente").html(htmlDatoPaciente);
-      $('#ate_formCreateCitPrev').trigger('reset');
+      $('#ate_formCreateCitPrev_2').trigger('reset');
       $('#inp_estPagado_A').prop('checked',false);
       $("#md-form_create_cita").modal("show");
       console.log('ajsdlkfj');
@@ -421,23 +421,4 @@ function showAtender(id) {
   });
 }
 
-$("#ate_formCreateCitPrev").submit(function (e) {
-  e.preventDefault();
-  inp = $('#ate_formCreateCitPrev').serializeArray();
-  console.log(inp);
-  $.ajax({
-    type: "POST",
-    url: "../atencion/createAte1",
-    data: { _token: $("meta[name=csrf-token]").attr("content"), data: inp ,paciente:PaSe},
-    // dataType: "dataType",
-    success: function (response) {
-      if (response) {
-        notif('1','Guardado.');
-        $('#ate_formCreateCitPrev').trigger('reset');
-        $("#md-form_create_cita").modal("hide");
-      } else {
-        notif('2','Error!.');
-      }
-    },
-  });
-});
+

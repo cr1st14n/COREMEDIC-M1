@@ -90,6 +90,7 @@ class AtencionController extends Controller
     }
     public function create(Request $request)
     {
+        return 'asdfasdfasdfasdf';
         $data = Request()->all();
         $this->validator($request->all())->validate();
 
@@ -477,25 +478,17 @@ class AtencionController extends Controller
             $request['data'][0]['name'] => $request['data'][0]['value'],
             $request['data'][1]['name'] => $request['data'][1]['value'],
             $request['data'][2]['name'] => $request['data'][2]['value'],
-            $request['data'][3]['name'] => $request['data'][3]['value'],
-            $request['data'][4]['name'] => $request['data'][4]['value'],
-            $request['data'][5]['name'] => $request['data'][5]['value'],
             // $request['data'][6]['name'] => $request['data'][6]['value'],
         ];
-        // return $data['at_especialidad'];
-        // return $request;
-
-
-
         $new = new atencion;
         $new->usu_ci = Auth::user()->id;
         $new->pa_id = $request['paciente'];
-        $new->ate_especialidad = $data['at_especialidad'];
-        $new->ate_procedimiento = $data['ate_Procedimiento'];
+        $new->ate_especialidad = $data['ate_especialidad'];
+        // $new->ate_procedimiento = $data['ate_Procedimiento'];
         $new->ate_med = $data['ate_medCit'];
         $new->ate_descripcion = $data['ate_observacion'];
-        $new->ate_turno = $data['ate_turno'];
-        $new->ate_num_ticked = $data['ate_ticked'];
+        // $new->ate_turno = $data['ate_turno'];
+        // $new->ate_num_ticked = $data['ate_ticked'];
         // $new->ate_pago = (array_key_exists('6', $request['data'])) ? 'cancelado' : 'pendiente';
         $new->ate_pago = 'cancelado';
         $new->ate_estAteMed = 0;
@@ -503,29 +496,29 @@ class AtencionController extends Controller
         // * datos de auditoria 
         $new->ca_fecha = Carbon::now()->format('Y-m-d');
         $res = $new->save();
-        return $res = (true) ? ['res'=>1,'data'=>$new->id] : ['res'=>0];
+        return $res = (true) ? ['res' => 1, 'data' => $new->id] : ['res' => 0];
     }
     public function createAteNotaAte(Request $request)
     {
         // return $request->id;
 
-        $atencion=atencion::where('id',$request->input('id'))->first();
-        $esp=especialidad::where('id',$atencion->ate_especialidad)->first();
-        $med=User::where('id',$atencion->ate_med)->first();
-        $paciente=Pacientes::where('pa_id',$atencion->pa_id)->first();
+        $atencion = atencion::where('id', $request->input('id'))->first();
+        $esp = especialidad::where('id', $atencion->ate_especialidad)->first();
+        $med = User::where('id', $atencion->ate_med)->first();
+        $paciente = Pacientes::where('pa_id', $atencion->pa_id)->first();
 
         $date = Carbon::now()->format('m-d-Y');
         $time = Carbon::now()->format('h:m a');
         $cantidadProductos = "0";
         $costoTotal = "0";
-        
-        
+
+
         return view('factura.notaFR_1')
             ->with('esp', $esp)
             ->with('med', $med)
             ->with('paciente', $paciente)
             ->with('atencion', $atencion)
             ->with('date', $date)
-            ->with('time', $time); 
+            ->with('time', $time);
     }
 }

@@ -292,7 +292,8 @@
 				</form>
 			</div>
 		</div>
-		<div id="md-form_create_cita_1" class="modal fade md-stickTop " tabindex="-1" data-width="900">
+
+		<div id="md-form_create_cita" class="modal fade md-stickTop " tabindex="-1" data-width="900">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times" id=""></i></button>
 				<h2><strong>Registro </strong>Atención Medica</h2>
@@ -301,7 +302,7 @@
 				<div class="col-lg-5">
 					<div class=" panel-body">
 						<table class="table table-bordered">
-							<tbody id="contendJS_datoPaciente_1">
+							<tbody id="contendJS_datoPaciente">
 								<tr>
 									<td># HCL:</td>
 									<td>--</td>
@@ -331,7 +332,7 @@
 					</div>
 				</div>
 				<div class="col-lg-7">
-					<form id="ate_formCreateCitPrev_1">
+					<form id="ate_formCreateCitPrev_2">
 						<input type="number" id="id_paciente_create_citPrev" hidden>
 						<div class="modal-body">
 							<div class="panel-body">
@@ -339,11 +340,11 @@
 									<div class="form-group">
 										<label class="control-label">Especialidad:</label>
 										<div class="row">
-											<div class="col-md-8">
+											<div class="col-md-12">
 												<div class="row">
 													<div class="col-lg-12">
-														<select required="" name="at_especialidad" class=" form-control show-menu-arrow" data-style="btn-theme-inverse" id="selecEspecialidad_1">
-															<option selected="true" disabled="disabled">Seleccioasdf2222nar</option>
+														<select required="" name="ate_especialidad" class=" form-control show-menu-arrow" data-style="btn-theme-inverse" id="selecEspecialidad">
+															<option selected="true" disabled="disabled">Seleccionar</option>
 														</select>
 													</div>
 
@@ -351,69 +352,13 @@
 											</div>
 										</div>
 									</div>
-									<div class="form-group">
-										<label class="control-label">Procedimiento</label>
-										<div class="row">
-											<div class="col-lg-6">
-												<ul class="iCheck" data-color="blue">
-													<li>
-														<input type="radio" name="ate_Procedimiento" value="Consulta" checked="true">
-														<label class=""> Consulta</label>
-													</li>
-													<li>
-														<input type="radio" name="ate_Procedimiento" value="Control">
-														<label class="">Control </label>
-													</li>
-													<li>
-														<input type="radio" name="ate_Procedimiento" value="Emergencias">
-														<label class="">Emergencias</label>
-													</li>
 
-												</ul>
-											</div>
-											<div class="col-lg-6">
-												<ul class="iCheck" data-color="blue">
-													<li>
-														<input type="radio" name="ate_Procedimiento" value="Curacion Mayor">
-														<label class="">CRN Mayor</label>
-													</li>
-													<li>
-														<input type="radio" name="ate_Procedimiento" value="Curacion Menor">
-														<label class="">CRN Menor</label>
-													</li>
-													<li>
-														<input type="radio" name="ate_Procedimiento" value="Enfermeria">
-														<label class="">Enfermeria</label>
-													</li>
-
-												</ul>
-											</div>
-										</div>
-									</div>
 									<div class="form-group">
 										<label class="control-label">Medico Asignado</label>
 										<div class="row">
 											<div class="col-md-12">
-												<select id="ate_medCit_1" name="ate_medCit" class="form-control" data-size="10" required="">
+												<select id="ate_medCit" name="ate_medCit" class="form-control" data-size="10" required="">
 													<option selected="true" disabled="disabled">Buscar medico</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="ticked" class="col-md-4 control-label"> # de ticked</label>
-										<div class="col-md-3">
-											<input type="number" class="form-control" placeholder="# ticked" id="ate_ticked" name="ate_ticked" required="" autocomplete="off"></input>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="control-label">Turno T/M</label>
-										<div class="row">
-											<div class="col-md-6">
-												<select id="ate_turno" name="ate_turno" class=" form-control show-menu-arrow" data-style="btn-theme-inverse">
-													<option value="Mañana">Mañana</option>
-													<option value="Tarde">Tarde</option>
 												</select>
 											</div>
 										</div>
@@ -426,24 +371,6 @@
 											</div>
 										</div>
 									</div>
-									<div class="form-group">
-										<!-- <label class="control-label">Registrar como pagado</label> -->
-										<div>
-											<div class="row">
-												<div class="col-sm-6">
-													<ul class="" data-color="red">
-														<li>
-
-															<label><input type="checkbox" name="est_pagado" id="inp_estPagado_A_1"> Registrar como cancelado</label>
-														</li>
-													</ul>
-												</div>
-
-											</div><!-- //row-->
-										</div>
-
-
-									</div>
 								</div>
 							</div>
 						</div>
@@ -455,6 +382,7 @@
 				</div>
 			</div>
 		</div>
+	
 	</div>
 
 	</div>
@@ -500,7 +428,7 @@
 		$('div.alert').delay(4000).slideUp(300);
 	</script>
 
-	
+
 	<script>
 		function soloLe(e) {
 			key = e.keyCode || e.which;
