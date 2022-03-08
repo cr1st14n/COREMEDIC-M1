@@ -8,8 +8,8 @@ function registerPaciente_1() {
   $("#md-form_create_paciente").modal("show");
 }
 
-$("#ate_formCreateCitPrev_2").submit(function (e) {
-  e.preventDefault();
+
+function registerAtencion() {
   inp = $("#ate_formCreateCitPrev_2").serializeArray();
   console.log(inp);
   $.ajax({
@@ -23,13 +23,16 @@ $("#ate_formCreateCitPrev_2").submit(function (e) {
     // dataType: "dataType",
     success: function (response) {
       console.log(response);
-      if (response) {
-        notif("1", "Guardado.");
+      if (response.res) {
+        notif("1", "Guardados.");
         $("#ate_formCreateCitPrev_2").trigger("reset");
         $("#md-form_create_cita").modal("hide");
+
+        imprimirNota_1(response.data)
       } else {
         notif("2", "Error!.");
       }
     },
   });
-});
+}
+

@@ -493,10 +493,19 @@ class AtencionController extends Controller
         $new->ate_pago = 'cancelado';
         $new->ate_estAteMed = 0;
         $new->ate_fecha = Carbon::now()->format('Y-m-d');
-        // * datos de auditoria 
+        // * datos de auditoria s
         $new->ca_fecha = Carbon::now()->format('Y-m-d');
         $res = $new->save();
-        return $res = (true) ? ['res' => 1, 'data' => $new->id] : ['res' => 0];
+
+        if ($res) {
+
+           $data['id']=  $new->id;
+           $data['pa']=  Pacientes::where('pa_id',$new->pa_id)->first();
+           $data['esp']=  especialidad::where('id',$new->ate_especialidad)->first();
+           $data['med']=  User::where('id',$new->ate_med)->first();
+           $data['fech']=  $new->ate_fecha;   
+        }
+        return $res = (true) ? ['res' => 1, 'data' => $data] : ['res' => 0];
     }
     public function createAteNotaAte(Request $request)
     {

@@ -115,3 +115,9 @@ $("#btn_index_pagPantInfo").on("click", function () {
   history.pushState(null, "", "/COREMEDIC-M1/Recepcion/IndexPagPantInfo");
 });
 
+// *-------------- FUNCIONES PARA CONFIGURAR LA IMPRESORA
+$("#btn_conf_print").click(function (e) { 
+  e.preventDefault();
+  $('#modal-confImprsora').modal('show');
+});
+

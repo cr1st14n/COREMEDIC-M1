@@ -40,7 +40,7 @@
 					<li><a href="#" class="icon-toolsbar nav-mini"><i class="fa fa-bars"></i></a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right tooltip-area">
-					<li><a href="#menu-right" data-toggle="tooltip" title="Right Menu" data-container="body" data-placement="left"><i class="fa fa-align-right"></i></a></li>
+					<li><a href="#" id="btn_conf_print" title="Configurar Impresora"><i class="fa fa-print"></i></a></li>
 					<li class="hidden-xs hidden-sm"><a class="h-seperate">AREA : RECEPCION</a></li>
 
 					<li><a href="#"><img alt="" src="" class="circle"></a>
@@ -352,7 +352,6 @@
 											</div>
 										</div>
 									</div>
-
 									<div class="form-group">
 										<label class="control-label">Medico Asignado</label>
 										<div class="row">
@@ -375,18 +374,52 @@
 							</div>
 						</div>
 						<footer class="panel-footer" align="right">
-							<button type="submit" class="btn btn-theme-inverse btn-block">Agendar Turno</button>
+							<button type="button" onclick="registerAtencion()" class="btn btn-theme-inverse btn-block">Agendar Turno</button>
 							<!-- <button type="reset" class="btn" onclick="clearForm(this.form);"> Limpiar Formulario</button> -->
 						</footer>
 					</form>
 				</div>
 			</div>
 		</div>
-	
+
+	</div>
+	<div id="modal-confImprsora" class="modal fade">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+			<h4 class="modal-title">Configuracion de Impresora Termica</h4>
+		</div>
+		<!-- //modal-header-->
+		<div class="modal-body">
+			<main role="main" class="container-fluid">
+				<div class="row">
+					<div class="col-12 col-lg-6">
+						<strong>Nombre de impresora seleccionada: </strong>
+						<p id="impresoraSeleccionada"></p>
+						<div class="form-group">
+							<select class="form-control" id="listaDeImpresoras"></select>
+						</div>
+
+					</div>
+					<div class="col-12 col-lg-6">
+
+						<button class="btn btn-primary btn-sm btn-block" id="btnRefrescarLista">Refrescar lista</button>
+						<button class="btn btn-primary btn-sm btn-block" id="btnEstablecerImpresora">Establecer como predeterminada</button>
+						<button class="btn btn-success btn-block" id="btnImprimir">Imprimir de prueba</button>
+
+					</div>
+					<div class="col-12 col-lg-12">
+						<button class="btn btn-warning btn-sm" id="btnLimpiarLog">Limpiar log</button>
+						<pre id="estado"></pre>
+					</div>
+				</div>
+			</main>
+		</div>
+		<!-- //modal-body-->
 	</div>
 
 	</div>
 	<!-- //wrapper-->
+
 
 
 	<!--
@@ -423,6 +456,10 @@
 	<script type="text/javascript" src="{{ asset('/asincrono/homeJs.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/asincrono/paciente_2.js') }}"></script>
 
+	<!-- impresora termica -->
+	<script type="text/javascript" src="{{ asset('/asincrono/plugImp/Impresora.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/asincrono/plugImp/script.js') }}"></script>
+	<!--  -->
 	@yield('scripts')
 	<script type="text/javascript">
 		$('div.alert').delay(4000).slideUp(300);
