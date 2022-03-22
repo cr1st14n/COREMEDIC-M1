@@ -35,7 +35,7 @@
 								<div class="error-template">
 										<h1> ACCESO DENEGADO <strong></strong> </h1>
 										<h2>USUARIO {{ Auth::user()->usu_nombre }} - CI: {{ Auth::user()->usu_ci}}  </h2>
-										<div class="error-details"> Lo sentimos, en este momento usted no tiene permitido el acceso al sistema <strong>C.S.J.O.</strong>  </div>
+										<div class="error-details"> Lo sentimos, en este momento usted no tiene permitido el acceso al sistema <strong>Trauma Medical</strong>  </div>
 										<div class="error-details"> Para mas informcion consulte al administrador del sistema.</div>
 										<div class="error-actions">
 										<div class="col-md-3"></div>

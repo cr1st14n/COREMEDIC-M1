@@ -9,7 +9,7 @@
 <div class="col-lg-12">
         <section class="panel">
                 <header class="panel-heading  align-lg-center">
-                        <h2><strong>C.S.J.O.</strong>Bienvenido Administracion</h2>
+                        <h2><strong>Trauma Medical</strong>Bienvenido Administracion</h2>
                 </header>
         </section>
 </div>

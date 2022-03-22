@@ -140,7 +140,7 @@
                         <label class="control-label">Zona donde sufragia*:</label>
                         <div>
                             <div class="input-icon right"> <i class="fa fa-keyboard-o ico "></i>
-                                <input class="form-control " type="text" placeholder="Zona Especifica donde sufragia" pattern="[A-ZñÑa-z0-9 ]+" id="zonaSufragio" onkeyup="validar('zonaSufragio')" required autocomplete="off">
+                                <input class="form-control " type="text" placeholder="Zona Especifica donde sufragia" pattern="[A-ZñÑa-z0-9 ]+" id="zonaSufragio" onkeyup="validar('zonaSufragio')"  autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                         <label class="control-label">Zona donde recide*:</label>
                         <div>
                             <div class="input-icon right"> <i class="fa fa-keyboard-o ico "></i>
-                                <input class="form-control " type="text" placeholder="Zona Especifica donde recide" pattern="[A-ZñÑa-z0-9# ]+" id="zona" onkeyup="validar('zona')" required autocomplete="off">
+                                <input class="form-control " type="text" placeholder="Zona Especifica donde recide" pattern="[A-ZñÑa-z0-9# ]+" id="zona" onkeyup="validar('zona')"  autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -233,7 +233,8 @@
                                 <option value="Administracion">Administracion</option>
                                 <option value="Recepcion">Recepcion</option>
                                 <option value="Caja">Caja</option>
-                                <option value="SisMed">Sistema Medico</option>
+                                <option value="SisMed"> Medico</option>
+                                <option value="SisMed_enf"> Enfermeria</option>
                             </select>
                         </div>
                     </div>
@@ -253,7 +254,7 @@
                     <div class="form-group">
                         <label class="control-label">Nombre de la institucion:</label>
                         <div>
-                            <input type="text" class="form-control rounded" id="seguroNombreInstitucionCP" pattern="[A-ZÑña-z0-9 ]+" required autocomplete="off">
+                            <input type="text" class="form-control rounded" id="seguroNombreInstitucionCP" pattern="[A-ZÑña-z0-9 ]+"  autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group">
@@ -266,7 +267,7 @@
                     <div class="form-group">
                         <label class="control-label">Nombre de la institucion:</label>
                         <div>
-                            <input type="text" class="form-control rounded" id="seguroNombreInstitucionLP" pattern="[A-ZÑña-z0-9 ]+" required autocomplete="off">
+                            <input type="text" class="form-control rounded" id="seguroNombreInstitucionLP" pattern="[A-ZÑña-z0-9 ]+"  autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group">

@@ -46,6 +46,7 @@ class PacienteController extends Controller
    */
   public function create1(Request $request)
   {
+    // return 'create todo lo que tien';
     $HCL = DB::table('Pacientes')->max('pa_hcl') + 1;
     $now = Carbon::now();
     $datetime = $now->format('Y-m-d H:i:s');

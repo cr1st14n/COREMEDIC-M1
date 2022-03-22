@@ -98,13 +98,12 @@
                     </ul>
                 <li><a href="{{route('home_area')}}"><i class="icon  fa fa-building-o"></i> Areas </a></li>
                 </li>
-                <li><a href="#" id="btn_index_pre_cotizaciones"><i class="icon fa fa-file"></i>Pre-Cotizaciones</a></li>
-                <li><a href="#" id="btn_index_descargosQuiEndo"><i class="icon fa fa-file"></i>Descargos Medicos</a></li>
-                <li class="Label label-lg  text-center" >Areas y Servicios</li>
-				<li><a href="{{route('formNewEspecialidad')}} "><i class="icon  fa fa-th"></i> Especialidades</a></li>
+                <!-- <li><a href="#" id="btn_index_pre_cotizaciones"><i class="icon fa fa-file"></i>Pre-Cotizaciones</a></li> -->
+                <!-- <li><a href="#" id="btn_index_descargosQuiEndo"><i class="icon fa fa-file"></i>Descargos Medicos</a></li> -->
+                <li class="Label label-lg  text-center">Areas y Servicios</li>
+                <li><a href="{{route('formNewEspecialidad')}} "><i class="icon  fa fa-th"></i> Especialidades</a></li>
             </ul>
         </nav>
-
     </div>
     <!-- Jquery Library -->
     <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
@@ -130,17 +129,11 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>3
     <script type="text/javascript" src="{{ asset('assets/plugins/morris/morris.js') }}"></script>
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/plugins/morris/morris.css') }}" />
-
     <!-- Library  5+ plugins for bootstrap -->
     <script type="text/javascript" src="{{asset('assets/plugins/pluginsForBS/pluginsForBS.js')}}"></script>
-
-
-
     <!-- scripts propios del sistema-->
     <script type="text/javascript" src="{{ asset('/asincrono/cotizaciones.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/asincrono/homeJs.js') }}"></script>
-
-
     <!--  -->
     <script>
         $('nav#menu').mmenu({

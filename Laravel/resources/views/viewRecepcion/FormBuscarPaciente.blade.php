@@ -275,7 +275,6 @@
 @endsection
 @section('scripts')
 <script type="text/javascript" src="{{ asset('/asincrono/pacientes.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/asincrono/paciente_2.js') }}"></script>
 
 @endsection
 

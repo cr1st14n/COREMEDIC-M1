@@ -68,36 +68,31 @@ $btnEstablecerImpresora.addEventListener("click", () => {
 $btnImprimir.addEventListener("click", () => {
     let impresora = new Impresora(RUTA_API);
     impresora.setFontSize(1, 1);
+    impresora.write("TRAUMA MEDICAL\n");
     impresora.write("Fuente 1,1\n");
-    impresora.setFontSize(1, 2);
-    impresora.write("Fuente 1,2\n");
-    impresora.setFontSize(2, 2);
-    impresora.write("Fuente 2,2\n");
-    impresora.setFontSize(2, 1);
-    impresora.write("Fuente 2,1\n");
-    impresora.setFontSize(1, 1);
+    impresora.write("Alta especialidad en reemplazos articulares\n");
+    impresora.write("Av. Arica esquina Calle Fernando Romero\n");
+    impresora.write("Edificio el Faro Nro 65\n");
+    impresora.write("Frente a la Estación del Teleferico Morado\n");
+    impresora.write("--------------------------------\n");
     impresora.setEmphasize(1);
-    impresora.write("Emphasize 1\n");
-    impresora.setEmphasize(0);
-    impresora.write("Emphasize 0\n");
-    impresora.setAlign("center");
-    impresora.write("Centrado\n");
+    impresora.write(`Paciente\n`);
+    impresora.write("--------------------------------\n");
     impresora.setAlign("left");
-    impresora.write("Izquierda\n");
+    impresora.write(`trauma: dolor de huzo}  \n`);
     impresora.setAlign("right");
-    impresora.write("Derecha\n");
-    impresora.setFont("A");
-    impresora.write("Fuente A\n");
-    impresora.setFont("B");
-    impresora.write("Fuente B\n");
+    impresora.write(`55 Bs.-\n`);
+    impresora.write("--------------------------------\n");
+    impresora.setAlign("right");
+    impresora.write(`TOTAL :55 Bs.-\n`);
+    impresora.write("--------------------------------\n");
+    impresora.write("Forma de Pago: CONTADO");
+   
     impresora.feed(2);
-    impresora.write("Separado por 2\n");
+    impresora.write("***Gracias por su preferencia !*** \n");
     impresora.cut();
     impresora.cutPartial(); // Pongo este y también cut porque en ocasiones no funciona con cut, solo con cutPartial
-    impresora.end()
-        .then(valor => {
-            loguear("Al imprimir: " + valor);
-        });
+    impresora.end();
 });
 
 // En el init, obtenemos la lista
@@ -108,31 +103,29 @@ refrescarNombreDeImpresoraSeleccionada();
 function imprimirNota_1(res) {
     let impresora = new Impresora(RUTA_API);
     impresora.setFontSize(1, 1);
-    impresora.setEmphasize(0);
-    impresora.setAlign("center");
     impresora.write("TRAUMA MEDICAL\n");
     impresora.write("Alta especialidad en reemplazos articulares\n");
     impresora.write("Av. Arica esquina Calle Fernando Romero\n");
     impresora.write("Edificio el Faro Nro 65\n");
-    impresora.write("Frente a la estación del teleferico morado\n");
+    impresora.write("Frente a la Estacion del Teleferico Morado\n");
     impresora.write("--------------------------------\n");
-    impresora.write(`Paciente ${res.pa_nombre} ${res.pa_appaterno}\n`);
-    impresora.write("\n");
+    impresora.setEmphasize(1);
+    impresora.write(`Paciente : ${res.pa.pa_nombre} ${res.pa.pa_appaterno} ${res.pa.pa_apmaterno}\n`);
+    impresora.write(`CI : ${res.pa.pa_ci}\n`);
     impresora.write("--------------------------------\n");
     impresora.setAlign("left");
-    impresora.write(`${res.esp_nombre} ${res.esp_detalle}  \n`);
+    impresora.write(`${res.esp.esp_nombre} ${res.esp.esp_detalle} \n`);
     impresora.setAlign("right");
-    impresora.write(`${res.esp_costo} Bs.-\n`);
+    impresora.write(`${res.esp.esp_costo} Bs.-\n`);
     impresora.write("--------------------------------\n");
-    impresora.write(`TOTAL : ${res.esp_costo} Bs.-\n`);
+    impresora.setAlign("right");
+    impresora.write(`TOTAL :${res.esp.esp_costo} Bs.-\n`);
     impresora.write("--------------------------------\n");
     impresora.write("Forma de Pago: CONTADO");
-    impresora.setAlign("center");
-    impresora.write("***Gracias por su preferencia !***");
+   
+    impresora.feed(2);
+    impresora.write("***Gracias por su preferencia !*** \n");
     impresora.cut();
-    impresora.cutPartial(); // use both because sometimes cut and/or cutPartial do not work
-    impresora.end()
-        .then(valor => {
-            loguear("Response: " + valor);
-        })
+    impresora.cutPartial(); // Pongo este y también cut porque en ocasiones no funciona con cut, solo con cutPartial
+    impresora.end();
   }

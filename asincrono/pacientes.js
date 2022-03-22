@@ -3,7 +3,7 @@
 //alert(frase3);
 
 // * ------- variables de seleccion
-var PaSe='';
+var PaSe = "";
 // *------------------------------
 $("#form_create_CitPrev").on("submit", function (event) {
   event.preventDefault();
@@ -28,23 +28,19 @@ function listPacientes(data) {
         pre1 = `<button class="btn btn-default" ><i class="fa fa-check"></i></button>`;
       }
       return `<tr>
-                      <td>${elem.pa_hcl}</td>
-                      <td>${elem.pa_ci}</td>
-                      <td>${elem.pa_nombre}</td>
-                      <td>${elem.pa_appaterno} / ${elem.pa_apmaterno}</td>
-                      <td>${pre1}</td>
-                     <td>
-                        <span class="tooltip-area">
-                        <button onclick="showAtender(${elem.pa_id})" class="btn btn-default btn-sm" title="Atender"><i class="fa  fa-plus-square"></i></button>
-                       
-                        <button onclick="rutaAsignarCitPrev(${elem.pa_id})" class="btn btn-default btn-sm" title="Asignar cita previa"><i class="fa  fa-stethoscope"></i></button>
-                        <a name="${elem.pa_id}" onclick="rutaprintHCL(this.name)" class="btn btn-default btn-sm" target="_blank" title="Inprimir"><i class="glyphicon glyphicon-print"></i></a>
-                        <button name="${elem.pa_id}" onclick="rutaEditPaciente(this.name)" class="btn btn-default btn-sm" title="Editar"><i class="fa fa-pencil"></i></i></button>
-                        <button name="${elem.pa_id}" onclick="rutaDestroyPaHcl(this.name)" class="btn btn-default btn-sm" title="Eliminar"><i class="fa fa-trash-o"></i></button>
-                        <button name="${elem.pa_id}" onclick="rutaPrestarHCL(${elem.pa_id},${elem.pa_hcl})" class="btn btn-default btn-sm" title="Presatar HCl"><i class="fa fa-puzzle-piece"></i></button>
-                        </span>
-                    </td>  
-                </tr>`;
+                    <td>${elem.pa_hcl}</td>
+                    <td>${elem.pa_ci}</td>
+                    <td>${elem.pa_nombre}</td>
+                    <td>${elem.pa_appaterno} / ${elem.pa_apmaterno}</td>
+                    <td>${pre1}</td>
+                    <td>
+                      <span class="tooltip-area">
+                      <button onclick="showAtender(${elem.pa_id})" class="btn btn-default btn-sm" title="Atender"><i class="fa fa-print"></i></button>
+                      <button name="${elem.pa_id}" onclick="rutaEditPaciente(this.name)" class="btn btn-default btn-sm" title="Editar"><i class="fa fa-pencil"></i></i></button>
+                      <button name="${elem.pa_id}" onclick="rutaDestroyPaHcl(this.name)" class="btn btn-default btn-sm" title="Eliminar"><i class="fa fa-trash-o"></i></button>
+                      </span>
+                  </td>  
+              </tr>`;
     })
     .join(" ");
   document.getElementById("resulBusqPacientes").innerHTML = html;
@@ -127,7 +123,8 @@ function rutaAtender(x) {
 function rutaprintHCL(x) {
   //window.alert(x);
   var ventana = window.open("", "PRINT", "height=700,width=700");
-  ventana.location.href = "/COREMEDIC-M1/Recepcion/paciente/PrintHCL1/" + x + "";
+  ventana.location.href =
+    "/COREMEDIC-M1/Recepcion/paciente/PrintHCL1/" + x + "";
   //document.location.href="/COREMEDIC-M1/Recepcion/paciente/PrintHCL1/"+x+"";
 }
 function rutaEditPaciente(x) {
@@ -144,9 +141,11 @@ function buscarHCLpaciente() {
     console.log("sin nuemro");
     $("#resulBusqPacientes").html("");
   } else {
-    $.get("/COREMEDIC-M1/api/buscarPacienteHCL/" + hcl + "", function (paciente) {
-      listPacientes(paciente);
-      /*$('#resulBusqPacientes').html("");
+    $.get(
+      "/COREMEDIC-M1/api/buscarPacienteHCL/" + hcl + "",
+      function (paciente) {
+        listPacientes(paciente);
+        /*$('#resulBusqPacientes').html("");
             for (var i = 0; i <= paciente.length - 1; i++) {
                 console.log(paciente[i]);
                 var tr = `<tr>
@@ -167,7 +166,8 @@ function buscarHCLpaciente() {
 
                 $("#resulBusqPacientes").append(tr)
             }*/
-    });
+      }
+    );
   }
 }
 function buscarNOMBRESpaciente() {
@@ -359,7 +359,7 @@ function listCitasPreviasEspecialidad() {
 
 // * funciones de atencion v2
 function showAtender(id) {
-  PaSe=id;
+  PaSe = id;
   $.ajax({
     type: "GET",
     url: "storePa1",
@@ -369,7 +369,7 @@ function showAtender(id) {
       htmlEsp = r.esp
         .map(function (e) {
           return (h = `
-        <option value='${e.id}' >${e.esp_nombre } - ${e.esp_detalle} - ${e.esp_costo} Bs.-</option>
+        <option value='${e.id}' >${e.esp_nombre} - ${e.esp_detalle} - ${e.esp_costo} Bs.-</option>
         `);
         })
         .join(" ");
@@ -413,12 +413,10 @@ function showAtender(id) {
       $("#selecEspecialidad").html(htmlEsp);
       $("#ate_medCit").html(htmlMed);
       $("#contendJS_datoPaciente").html(htmlDatoPaciente);
-      $('#ate_formCreateCitPrev_2').trigger('reset');
-      $('#inp_estPagado_A').prop('checked',false);
+      $("#ate_formCreateCitPrev_2").trigger("reset");
+      $("#inp_estPagado_A").prop("checked", false);
       $("#md-form_create_cita").modal("show");
-      console.log('ajsdlkfj');
+      console.log("ajsdlkfj");
     },
   });
 }
-
-

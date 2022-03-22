@@ -2,7 +2,7 @@
  * Una clase para interactuar con el plugin
  * 
  * @author parzibyte
- * @see https://parzibyte.me/blog
+ * @see ´TRAUMA-MEDICAL´
  */
 const C = {
     AccionWrite: "write",

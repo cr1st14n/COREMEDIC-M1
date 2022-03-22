@@ -65,8 +65,8 @@
                             <div class="account-wall">
                                 <section class="align-lg-center">
                                     <div class="site-logo"></div>
-                                    <h1 class="login-title"> <span>TRUMA MEDICAL</span> <br>
-                                        <h5>Alta especialidad en remplazos articulares</h5>
+                                    <h1 class="login-title"> <span>TRAUMA MEDICAL</span> <br>
+                                        <h5>Alta Especialidad en Remplazos Articulares</h5>
                                     </h1>
                                 </section>
                                 <form id="form-signin" class="form-signin" method="POST" action="{{ route('login') }}">

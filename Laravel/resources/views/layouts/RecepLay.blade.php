@@ -120,11 +120,9 @@
 
 
 				<li class="Label label-lg text-center">Gestionar Atencion</li>
-				<li><a href="{{route('inf_atencion')}} "><span><i class="icon fa fa-book"></i> Paciente - Especialidad </span></a></li>
-				<li><a href="{{route('showAll_atencion')}} "><span><i class="icon fa fa-book"></i> Atencion </span></a></li>
-				<li><a href="{{route('citasPrecias_Index')}} "><span><i class="icon fa fa-book"></i> Citas Previas </span></a></li>
+				<!-- <li><a href="{{route('inf_atencion')}} "><span><i class="icon fa fa-book"></i> Paciente - Especialidad </span></a></li> -->
 				<li><a href="{{route('reporte_index')}} "> <i class="icon  fa fa-bar-chart-o"></i>Informes / Reportes </a></li>
-				<li><a href="{{route('notas-index')}} "> <i class="icon  fa fa-file-o"></i>Notas / Prestamos</a></li>
+				<li><a href="{{route('notas-index')}} "> <i class="icon  fa fa-file-o"></i>Notas</a></li>
 				<li><a href="#" id="btn_index_pagPantInfo"> <i class="icon fa fa-desktop"></i>Pantalla de información</a></li>
 
 
@@ -139,38 +137,54 @@
 		//////////     RIGHT NAV MENU     //////////
 		/////////////////////////////////////////////////////////////
 		-->
-		<nav id="menu-right">
-			<ul>
-				<li class="Label label-lg">Color de Thema</li>
-				<li>
-					<span class="text-center">
-						<div id="style1" class="color-themes col1"></div>
-						<div id="style2" class="color-themes col2"></div>
-						<div id="style3" class="color-themes col3"></div>
-						<div id="style4" class="color-themes col4"></div>
-						<div id="none" class="color-themes col5"></div>
-					</span>
-				</li>
 
-
-			</ul>
-		</nav>
 		<!-- //nav right menu-->
+		<div id="modal-confImprsora" class="modal fade">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+				<h4 class="modal-title">Configuracion de Impresora Termica</h4>
+			</div>
+			<!-- //modal-header-->
+			<div class="modal-body">
+				<main role="main" class="container-fluid">
+					<div class="row">
+						<div class="col-12 col-lg-6">
+							<strong>Nombre de impresora seleccionada: </strong>
+							<p id="impresoraSeleccionada"></p>
+							<div class="form-group">
+								<select class="form-control" id="listaDeImpresoras"></select>
+							</div>
+
+						</div>
+						<div class="col-12 col-lg-6">
+
+							<button class="btn btn-primary btn-sm btn-block" id="btnRefrescarLista">Refrescar lista</button>
+							<button class="btn btn-primary btn-sm btn-block" id="btnEstablecerImpresora">Establecer como predeterminada</button>
+							<button class="btn btn-success btn-block" id="btnImprimir">Imprimir de prueba</button>
+
+						</div>
+						<div class="col-12 col-lg-12">
+							<button class="btn btn-warning btn-sm" id="btnLimpiarLog">Limpiar log</button>
+							<pre id="estado"></pre>
+						</div>
+					</div>
+				</main>
+			</div>
+			<!-- //modal-body-->
+		</div>
 		<div id="md-form_create_paciente" class="modal fade md-stickTop " tabindex="-1" data-width="900">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times" id=""></i></button>
 				<h2><strong>Registro </strong>Nuevo Paciente</h2>
 			</div>
-			<div class="row">
-				<form id="form_registerPaciente">
+			<form id="form_registerPaciente_1">
+				{{ csrf_field() }}
+				<div class="row">
 					<div class="col-lg-6">
-						{{ csrf_field() }}
 						<section class="panel">
 							<header class="panel-heading sm" data-color="theme-inverse">
 								<h2>Datos personales</h2>
 							</header>
-							<div class="panel-tools color" align="right" data-toolscolor="#4EA582">
-							</div>
 							<div class="panel-body">
 								<div class="form-horizontal" data-collabel="3" data-alignlabel="center">
 									<div class="form-group">
@@ -226,9 +240,6 @@
 										<label class="control-label">Pais de nacimiento</label>
 										<div class="col-md-6">
 											<input id="pa_pais_nac" name="pa_pais_nac" value="" type="text" class="form-control rounded" maxlength="30" onkeypress="return soloLe(event)" onblur="limpia()">
-
-
-
 										</div>
 									</div>
 									<div class="form-group">
@@ -249,8 +260,6 @@
 							<header class="panel-heading sm" data-color="theme-inverse">
 								<h2>Datos referenciales</h2>
 							</header>
-							<div class="panel-tools color" align="right" data-toolscolor="#4EA582">
-							</div>
 							<div class="panel-body">
 								<div class="form-horizontal" data-collabel="3" data-alignlabel="center">
 									<div class="form-group">
@@ -259,7 +268,6 @@
 										<div class="col-md-6">
 											<select id="pa_estado_civil" name="pa_estado_civil" class=" form-control show-menu-arrow" data-style="btn-theme-inverse" required>
 												<option selected="true" value="Null">Seleccionar</option>
-
 												<option value="Soltero">Soltero</option>
 												<option value="Casado">Casado</option>
 												<option value="Viudo">Viudo</option>
@@ -289,10 +297,9 @@
 									</footer>
 								</div>
 						</section>
-				</form>
-			</div>
+					</div>
+			</form>
 		</div>
-
 		<div id="md-form_create_cita" class="modal fade md-stickTop " tabindex="-1" data-width="900">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times" id=""></i></button>
@@ -383,50 +390,18 @@
 		</div>
 
 	</div>
-	<div id="modal-confImprsora" class="modal fade">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
-			<h4 class="modal-title">Configuracion de Impresora Termica</h4>
-		</div>
-		<!-- //modal-header-->
-		<div class="modal-body">
-			<main role="main" class="container-fluid">
-				<div class="row">
-					<div class="col-12 col-lg-6">
-						<strong>Nombre de impresora seleccionada: </strong>
-						<p id="impresoraSeleccionada"></p>
-						<div class="form-group">
-							<select class="form-control" id="listaDeImpresoras"></select>
-						</div>
 
-					</div>
-					<div class="col-12 col-lg-6">
 
-						<button class="btn btn-primary btn-sm btn-block" id="btnRefrescarLista">Refrescar lista</button>
-						<button class="btn btn-primary btn-sm btn-block" id="btnEstablecerImpresora">Establecer como predeterminada</button>
-						<button class="btn btn-success btn-block" id="btnImprimir">Imprimir de prueba</button>
 
-					</div>
-					<div class="col-12 col-lg-12">
-						<button class="btn btn-warning btn-sm" id="btnLimpiarLog">Limpiar log</button>
-						<pre id="estado"></pre>
-					</div>
-				</div>
-			</main>
-		</div>
-		<!-- //modal-body-->
-	</div>
-
-	</div>
 	<!-- //wrapper-->
 
 
 
 	<!--
-////////////////////////////////////////////////////////////////////////
-//////////     JAVASCRIPT  LIBRARY     //////////
-/////////////////////////////////////////////////////////////////////
--->
+	////////////////////////////////////////////////////////////////////////
+	//////////     JAVASCRIPT  LIBRARY     //////////
+	/////////////////////////////////////////////////////////////////////
+	-->
 	<!-- Jquery Library -->
 	<script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('assets/js/jquery.ui.min.js') }}"></script>
