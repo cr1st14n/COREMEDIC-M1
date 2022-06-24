@@ -20,8 +20,8 @@ Route::post('searchredirect', 'PacienteController@buscar');
 
 
 // -------pantalla de informaciones-----------//
-Route::get('pantallaInformacion','PantInfoController@index');
-route::get('pantallaListMed','PantInfoController@pantallaListMed');
+Route::get('pantallaInformacion', 'PantInfoController@index');
+route::get('pantallaListMed', 'PantInfoController@pantallaListMed');
 
 
 //--------------administracion---------//
@@ -33,6 +33,9 @@ Route::group(['middleware' => ['administracion'], 'prefix' => '/adm'], function 
 	Route::get('/datosAdmHome', 'HomeController@datosAdmHome');
 	Route::post('perfil_update_datos', 'HomeController@update_perfil_datos')->name('store_user_adm_update_date');
 	Route::post('perfil_update_email', 'HomeController@update_perfil_email')->name('store_user_adm_update_email');
+	Route::group(['prefix' => 'reporte'], function () {
+		Route::get('RD', 'AtencionController@reporte_diario')->name('reporte_diario_p_adm1');
+	});
 
 	Route::group(['prefix' => '/users'], function () {
 
@@ -73,10 +76,10 @@ Route::group(['middleware' => ['administracion'], 'prefix' => '/adm'], function 
 		Route::get('edit', 'areaController@edit');
 		Route::get('update', 'areaController@update');
 		Route::get('destroy', 'areaController@destroy');
-		
+
 		// ?-- new app
 		Route::get('show', 'areaController@show');
-		Route::get('list','areaController@list');
+		Route::get('list', 'areaController@list');
 	});
 	Route::group(['prefix' => '/reporte'], function () {
 		Route::get('home', 'HomeController@admReportHome')->name('admReportHome');
@@ -95,22 +98,20 @@ Route::group(['middleware' => ['administracion'], 'prefix' => '/adm'], function 
 		Route::get('actRegistroMed', 'admRecepController@actRegistroMed');
 		Route::get('DatosEstAnualesMedico', 'admRecepController@DatosEstAnualesMedico');
 	});
-	Route::group(['prefix' => '/cotizaciones'],function ()
-	{
-		route::get('home','cotizacionController@index');
-		route::get('list1','cotizacionController@list1');
-		route::get('list2','cotizacionController@list2');
-		route::get('store1','cotizacionController@store1');
-		route::post('create','cotizacionController@create');
-		route::post('update','cotizacionController@update');
-		route::get('createPdf','cotizacionController@createPdf');
+	Route::group(['prefix' => '/cotizaciones'], function () {
+		route::get('home', 'cotizacionController@index');
+		route::get('list1', 'cotizacionController@list1');
+		route::get('list2', 'cotizacionController@list2');
+		route::get('store1', 'cotizacionController@store1');
+		route::post('create', 'cotizacionController@create');
+		route::post('update', 'cotizacionController@update');
+		route::get('createPdf', 'cotizacionController@createPdf');
 	});
-	Route::group(['prefix'=>'descargosMedicos'],function ()
-	{
-		route::get('home','DescargosMedController@home');
-		Route::get('index1','DescargosMedController@list1');
-		route::resource('desMed','DescargosMedController');
-		route::get('showDetalleDescargo1','DescargosMedController@showDetalleDescargo1');
+	Route::group(['prefix' => 'descargosMedicos'], function () {
+		route::get('home', 'DescargosMedController@home');
+		Route::get('index1', 'DescargosMedController@list1');
+		route::resource('desMed', 'DescargosMedController');
+		route::get('showDetalleDescargo1', 'DescargosMedController@showDetalleDescargo1');
 	});
 });
 
@@ -133,7 +134,7 @@ Route::group(['middleware' => ['recepcion'], 'prefix' => '/Recepcion'], function
 		Route::post('update', 'PacienteController@update')->name('update_paciente');
 		Route::get('delete/{pa_hcl}', 'PacienteController@destroy')->name('destroy_pa_hcl');
 		// * rutas V2
-		Route::get('storePa1','PacienteController@storePa1');
+		Route::get('storePa1', 'PacienteController@storePa1');
 	});
 	Route::group(['prefix' => '/atencion'], function () {
 		Route::get('index/{pa_hcl} ', 'AtencionController@index')->name('form_atencion');
@@ -145,18 +146,18 @@ Route::group(['middleware' => ['recepcion'], 'prefix' => '/Recepcion'], function
 		Route::get('delete/{id}', 'AtencionController@destroy')->name('delete_atencion');
 		Route::get('pagar_ate/{id} ', 'AtencionController@pago')->name('recep_pago');
 		//* ----- rutaV2
-		Route::post('createAte1','AtencionController@createAte1');
-		Route::get('createAteNotaAte','AtencionController@createAteNotaAte');
+		Route::post('createAte1', 'AtencionController@createAte1');
+		Route::get('createAteNotaAte', 'AtencionController@createAteNotaAte');
 	});
-	Route::group(['prefix'=>'citaPrevia'],function (){
-		Route::get('infoPaci','CitPrevController@infoPaci');
-		Route::post('create','CitPrevController@create');
-		Route::get('index','CitPrevController@indexCitasPrevias')->name('citasPrecias_Index');
-		Route::get('listCitasPrevias','CitPrevController@listCitasPrevias');
-		Route::get('agendarCitPrev','CitPrevController@agendarCitPrev');
-		Route::post('createCitPrevAgendar','CitPrevController@createCitPrevAgendar');
-		Route::post('destroy','CitPrevController@destroy');
-		Route::get('listagenda1','CitPrevController@listagenda1');
+	Route::group(['prefix' => 'citaPrevia'], function () {
+		Route::get('infoPaci', 'CitPrevController@infoPaci');
+		Route::post('create', 'CitPrevController@create');
+		Route::get('index', 'CitPrevController@indexCitasPrevias')->name('citasPrecias_Index');
+		Route::get('listCitasPrevias', 'CitPrevController@listCitasPrevias');
+		Route::get('agendarCitPrev', 'CitPrevController@agendarCitPrev');
+		Route::post('createCitPrevAgendar', 'CitPrevController@createCitPrevAgendar');
+		Route::post('destroy', 'CitPrevController@destroy');
+		Route::get('listagenda1', 'CitPrevController@listagenda1');
 	});
 	Route::group(['prefix' => '/reporte'], function () {
 
@@ -181,16 +182,14 @@ Route::group(['middleware' => ['recepcion'], 'prefix' => '/Recepcion'], function
 		Route::post('/update/', 'PrestHCLController@update');
 		Route::get('/cerrarPrestamo/{id}', 'PrestHCLController@cerrarPrestamo');
 	});
-	Route::group(['prefix'=>'IndexPagPantInfo'],function ()
-	{
-		route::get('/','PantInfoController@ViewHomePantInfo');
-		route::get('listData1','PantInfoController@listData1');
-		route::post('create1','PantInfoController@create1');
-		route::get('edit_1','PantInfoController@edit_1');
-		route::post('update1','PantInfoController@update1');
-		route::post('destroy1','PantInfoController@destroy1');
-		route::get('pantallaListMed','PantInfoController@pantallaListMed');
-
+	Route::group(['prefix' => 'IndexPagPantInfo'], function () {
+		route::get('/', 'PantInfoController@ViewHomePantInfo');
+		route::get('listData1', 'PantInfoController@listData1');
+		route::post('create1', 'PantInfoController@create1');
+		route::get('edit_1', 'PantInfoController@edit_1');
+		route::post('update1', 'PantInfoController@update1');
+		route::post('destroy1', 'PantInfoController@destroy1');
+		route::get('pantallaListMed', 'PantInfoController@pantallaListMed');
 	});
 });
 
@@ -207,8 +206,8 @@ Route::group(['middleware' => ['caja'], 'prefix' => '/caja'], function () {
 	Route::get('reportes', 'cajaController@reportes')->name('caja_reporte');
 	Route::any('reporteDiario_Imprimir', 'cajaController@reporteDiario')->name('reporteDiario');
 	Route::any('reporteMensual', 'cajaController@reporteMensual')->name('reporteMensual');
-// *--  ajax
-	Route::get('pacEsp_1','cajaController@pacEsp_1');
+	// *--  ajax
+	Route::get('pacEsp_1', 'cajaController@pacEsp_1');
 	Route::post('pago_1', 'cajaController@pago_1');
 });
 
@@ -231,7 +230,7 @@ Route::group([/*'middleware'=>['caja'],*/'prefix' => '/RRHH'], function () {
 		Route::post('createUser', 'empleadoController@createUser');
 		Route::post('revCiEmail', 'empleadoController@revCiEmail');
 		Route::post('destroy', 'empleadoController@destroy');
-		Route::get('listAreasDisponibles','areaController@listAreas');
+		Route::get('listAreasDisponibles', 'areaController@listAreas');
 		//* rutas permisos de personal
 		Route::group(['prefix' => 'permiso'], function () {
 			Route::post('create', 'PermisosController@create');
@@ -276,8 +275,8 @@ Route::group([/*'middleware'=>['caja'],*/'prefix' => '/RRHH'], function () {
 		Route::post('usuAreaCambio', 'areaController@usuAreaCambio');
 		Route::post('create', 'areaController@create');
 		Route::post('updateUsuEncargado', 'areaController@updateUsuEncargado');
-		Route::get('edit','areaController@edit');
-		Route::post('update','areaController@update');
+		Route::get('edit', 'areaController@edit');
+		Route::post('update', 'areaController@update');
 		Route::post('delete', 'areaController@delete');
 		Route::post('destroy', 'areaController@destroy');
 		Route::post('removeUsuArea', 'areaController@removeUsuArea');

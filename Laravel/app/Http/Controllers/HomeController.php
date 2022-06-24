@@ -62,7 +62,7 @@ class HomeController extends Controller
                     break;
                 default:
                     # code...
-            return "jeje no da $user";
+            Auth::logout();
                     break;
             }
         }else {

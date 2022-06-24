@@ -184,11 +184,11 @@ class AtencionController extends Controller
             $turno_1 = 'M';
         }
         $atencion = atencion::join('especialidad', 'especialidad.id', '=', 'atencion.ate_especialidad')
-        ->join('pacientes', 'pacientes.pa_id', '=', 'atencion.pa_id')
-        ->join('personalSalud', 'personalSalud.id', '=', 'atencion.ate_med')
-        ->orderBy('atencion.created_at', 'desc')->where('ate_turno', 'like', $turno . '%')
-        ->where('ate_fecha', $time)
-        ->select('atencion.id as ate_id', 'pacientes.pa_hcl', 'atencion.ate_turno', 'atencion.ate_num_ticked', 'atencion.ate_pago', 'especialidad.esp_nombre', 'personalSalud.ps_nombre', 'personalSalud.ps_appaterno', 'personalSalud.ps_apmaterno', 'atencion.created_at', 'atencion.time_at')->latest('ate_id')->get();
+            ->join('pacientes', 'pacientes.pa_id', '=', 'atencion.pa_id')
+            ->join('personalSalud', 'personalSalud.id', '=', 'atencion.ate_med')
+            ->orderBy('atencion.created_at', 'desc')->where('ate_turno', 'like', $turno . '%')
+            ->where('ate_fecha', $time)
+            ->select('atencion.id as ate_id', 'pacientes.pa_hcl', 'atencion.ate_turno', 'atencion.ate_num_ticked', 'atencion.ate_pago', 'especialidad.esp_nombre', 'personalSalud.ps_nombre', 'personalSalud.ps_appaterno', 'personalSalud.ps_apmaterno', 'atencion.created_at', 'atencion.time_at')->latest('ate_id')->get();
 
 
         //$atencion=atencion::SELECT(DB::raw('count(*) as agrupado,ate_turno'))->where('ate_fecha',$time)->groupBy('ate_turno')->get();
@@ -210,21 +210,21 @@ class AtencionController extends Controller
                 if ($tipo == 'P') {
                     $tabla = '1';
                     $resultado = atencion::join('especialidad', 'especialidad.id', '=', 'atencion.ate_especialidad')
-                    ->join('pacientes', 'pacientes.pa_id', '=', 'atencion.pa_id')
-                    ->join('personalSalud', 'personalSalud.id', '=', 'atencion.ate_med')
-                    ->orderBy('atencion.created_at', 'desc')->where('ate_fecha', $fecha)
-                    ->select('atencion.id as ate_id', 'pacientes.pa_hcl', 'atencion.ate_turno', 'atencion.ate_num_ticked', 'atencion.ate_pago', 'especialidad.esp_nombre', 'personalSalud.ps_nombre', 'personalSalud.ps_appaterno', 'personalSalud.ps_apmaterno', 'atencion.created_at')->latest('ate_id')->get();
+                        ->join('pacientes', 'pacientes.pa_id', '=', 'atencion.pa_id')
+                        ->join('personalSalud', 'personalSalud.id', '=', 'atencion.ate_med')
+                        ->orderBy('atencion.created_at', 'desc')->where('ate_fecha', $fecha)
+                        ->select('atencion.id as ate_id', 'pacientes.pa_hcl', 'atencion.ate_turno', 'atencion.ate_num_ticked', 'atencion.ate_pago', 'especialidad.esp_nombre', 'personalSalud.ps_nombre', 'personalSalud.ps_appaterno', 'personalSalud.ps_apmaterno', 'atencion.created_at')->latest('ate_id')->get();
 
                     //$resultado=atencion::latest('created_at')->where('ate_fecha',$fecha)->get();  
                 } elseif ($tipo == 'E') {
                     $tabla = '2';
                     $resultado = atencion::join('especialidad', 'especialidad.id', '=', 'atencion.ate_especialidad')
-                    ->SELECT(DB::raw('count(*) as agrupado,esp_nombre'))->where('ate_fecha', $fecha)->groupBy('esp_nombre')->get();
+                        ->SELECT(DB::raw('count(*) as agrupado,esp_nombre'))->where('ate_fecha', $fecha)->groupBy('esp_nombre')->get();
                     //$resultado=atencion::SELECT(DB::raw('count(*) as agrupado,ate_especialidad'))->where('ate_fecha',$fecha)->groupBy('ate_especialidad')->get();    
                 } elseif ($tipo == 'T') {
                     $tabla = '2';
                     $resultado = atencion::SELECT(DB::raw('count(*) as agrupado,ate_turno'))
-                    ->where('ate_fecha', $fecha)->groupBy('ate_turno')->get();
+                        ->where('ate_fecha', $fecha)->groupBy('ate_turno')->get();
                 }
                 break;
 
@@ -232,21 +232,21 @@ class AtencionController extends Controller
                 if ($tipo == 'P') {
                     $tabla = '1';
                     $resultado = atencion::join('especialidad', 'especialidad.id', '=', 'atencion.ate_especialidad')
-                    ->join('pacientes', 'pacientes.pa_id', '=', 'atencion.pa_id')
-                    ->join('personalSalud', 'personalSalud.id', '=', 'atencion.ate_med')
-                    ->orderBy('atencion.created_at', 'desc')->where('ate_fecha', $fecha)
-                    ->where('ate_turno', 'like', $turno . '%')
-                    ->select('atencion.id as ate_id', 'pacientes.pa_hcl', 'atencion.ate_turno', 'atencion.ate_num_ticked', 'atencion.ate_pago', 'especialidad.esp_nombre', 'personalSalud.ps_nombre', 'personalSalud.ps_appaterno', 'personalSalud.ps_apmaterno', 'atencion.created_at')->latest('ate_id')->get();
+                        ->join('pacientes', 'pacientes.pa_id', '=', 'atencion.pa_id')
+                        ->join('personalSalud', 'personalSalud.id', '=', 'atencion.ate_med')
+                        ->orderBy('atencion.created_at', 'desc')->where('ate_fecha', $fecha)
+                        ->where('ate_turno', 'like', $turno . '%')
+                        ->select('atencion.id as ate_id', 'pacientes.pa_hcl', 'atencion.ate_turno', 'atencion.ate_num_ticked', 'atencion.ate_pago', 'especialidad.esp_nombre', 'personalSalud.ps_nombre', 'personalSalud.ps_appaterno', 'personalSalud.ps_apmaterno', 'atencion.created_at')->latest('ate_id')->get();
                 } elseif ($tipo == 'E') {
                     $tabla = '2';
                     //$resultado=atencion::SELECT(DB::raw('count(*) as agrupado,ate_especialidad'))->where('ate_fecha',$fecha)->groupBy('ate_especialidad')->where('ate_turno','like' ,$turno.'%')->get();
                     $resultado = atencion::join('especialidad', 'especialidad.id', '=', 'atencion.ate_especialidad')
-                    ->SELECT(DB::raw('count(*) as agrupado,esp_nombre'))->where('ate_fecha', $fecha)->where('ate_turno', 'like', $turno . '%')
-                    ->groupBy('esp_nombre')->get();
+                        ->SELECT(DB::raw('count(*) as agrupado,esp_nombre'))->where('ate_fecha', $fecha)->where('ate_turno', 'like', $turno . '%')
+                        ->groupBy('esp_nombre')->get();
                 } elseif ($tipo == 'T') {
                     $tabla = '2';
                     $resultado = atencion::SELECT(DB::raw('count(*) as agrupado,ate_turno'))->where('ate_fecha', $fecha)
-                    ->groupBy('ate_turno')->where('ate_turno', 'like', $turno . '%')->get();
+                        ->groupBy('ate_turno')->where('ate_turno', 'like', $turno . '%')->get();
                 }
 
 
@@ -410,6 +410,17 @@ class AtencionController extends Controller
             return  view('pdf.reporteRecepcion2')->with("pacientes", $data);
         } elseif ($tipo == 'R') {
 
+            if ($Request->input('parametro') == 'mensual') {
+                $fecha1 = Carbon::parse($Request->input('p_fecha_1'))->format('Y-m-d');
+                $fecha2 = Carbon::parse($Request->input('p_fecha_2'))->format('Y-m-d');
+
+                $fecha_actual = "$fecha1 - $fecha2";
+                $fecha = Carbon::parse($p_fecha)->format('d-m-Y');
+                $data = pacientes::whereBetween('created_at', ["$fecha1 00:00", "$fecha2 12:00"])->get();
+                $total_p = pacientes::whereBetween('created_at', ["$fecha1 00:00", "$fecha2 12:00"])->count();
+                //return $data;
+                return view('pdf.reporteRecepcion1')->with("fecha", $fecha)->with("fecha_actual", $fecha_actual)->with("pacientes", $data)->with("total_p", $total_p);
+            }
             $fecha_actual = Carbon::now()->format('d-m-Y');
             $fecha = Carbon::parse($p_fecha)->format('d-m-Y');
             $data = pacientes::where('ca_fecha', 'like', $p_fecha . '%')->get();
@@ -417,41 +428,119 @@ class AtencionController extends Controller
             //return $data;
             return view('pdf.reporteRecepcion1')->with("fecha", $fecha)->with("fecha_actual", $fecha_actual)->with("pacientes", $data)->with("total_p", $total_p);
         } elseif ($tipo == 'I_D_M') {
+            // !=============== new sentiac =====================\
+            if ($Request->input('parametro') == 'mensual') {
+                $t = 'Mañana';
+                $fecha1 = Carbon::parse($Request->input('p_fecha_1'))->format('Y-m-d');
+                $fecha2 = Carbon::parse($Request->input('p_fecha_2'))->format('Y-m-d');
 
+                $to_afi = pacientes::whereBetween('created_at', ["$fecha1 00:00", "$fecha2 12:00"])->count();
+
+                $to_afi_list = pacientes::whereBetween('created_at', ["$fecha1 00:00", "$fecha2 12:00"])->get();
+                //return $to_afi_list;
+                $to_ate = atencion::whereBetween('created_at', ["$fecha1 00:00", "$fecha2 12:00"])
+                    ->where('ate_turno', 'Mañana')
+                    ->where('ate_pago', 'cancelado')->count();
+                $to_ate_pen = atencion::whereBetween('created_at', ["$fecha1 00:00", "$fecha2 12:00"])
+                    // ->where('ate_turno', 'Mañana')
+                    ->where('ate_pago', 'pendiente')->count();
+                $atencion = atencion::whereBetween('atencion.created_at', ["$fecha1 00:00", "$fecha2 12:00"])
+                    // ->where('ate_turno', 'Mañana')
+                    ->join('especialidad', 'especialidad.id', '=', 'atencion.ate_especialidad')
+                    ->join('pacientes', 'pacientes.pa_id', '=', 'atencion.pa_id')
+                    ->join('users', 'users.id', '=', 'atencion.ate_med')
+                    ->select(
+                        'atencion.id as ate_id',
+                        'pacientes.pa_hcl',
+                        'pacientes.pa_nombre',
+                        'pacientes.pa_appaterno',
+                        'pacientes.pa_ci',
+                        'pacientes.pa_apmaterno',
+                        'atencion.ate_turno',
+                        'atencion.ate_num_ticked',
+                        'atencion.ate_pago',
+                        'atencion.created_at',
+                        'especialidad.esp_nombre',
+                        'especialidad.esp_detalle',
+                        'especialidad.esp_costo',
+                        'users.usu_nombre',
+                        'users.usu_appaterno',
+                        'users.usu_apmaterno',
+                        'atencion.created_at'
+                    )->orderBy('ate_med', 'asc')->orderBy('atencion.id', 'asc')->get();
+
+                $totalIngreso = atencion::whereBetween('atencion.created_at', ["$fecha1 00:00", "$fecha2 12:00"])
+                    ->join('especialidad', 'especialidad.id', '=', 'atencion.ate_especialidad')->get();
+                $total = 0;
+                foreach ($totalIngreso as $key => $value) {
+                    $total = $total + $value['esp_costo'];
+                }
+
+
+                $notas = recepNotas::whereBetween('created_at', ["$fecha1 00:00", "$fecha2 12:00"])
+                    ->where('rn_cod_usu', Auth::user()->usu_ci)
+                    ->get();
+                return view('pdf.reporteRecepcion3')
+                    ->with("notas", $notas)
+                    ->with("fecha", $p_fecha)
+                    ->with("fecha_actual", "$fecha1 - $fecha2")
+                    ->with("atencion", $atencion)
+                    ->with("to_afi", $to_afi)
+                    ->with("to_ate", $to_ate)
+                    ->with("t", $t)
+                    ->with('to_afi_list', $to_afi_list)
+                    ->with('totalIngreso', $totalIngreso)
+                    ->with("to_ate_pen", $total);
+            }
             $t = 'Mañana';
             $fecha = Carbon::parse($p_fecha)->format('d-m-Y');
             $to_afi = pacientes::where('ca_fecha', 'like', $p_fecha . '%')
-            // ->whereBetween('created_at', ["$p_fecha 00:00", "$p_fecha 12:00"])->count();
-            ->count();
+                // ->whereBetween('created_at', ["$p_fecha 00:00", "$p_fecha 12:00"])->count();
+                ->count();
             $to_afi_list = pacientes::where('ca_fecha', 'like', $p_fecha . '%')
-            // ->whereBetween('created_at', ["$p_fecha 00:00", "$p_fecha 12:00"])->get();
-            ->get();
+                // ->whereBetween('created_at', ["$p_fecha 00:00", "$p_fecha 12:00"])->get();
+                ->get();
             //return $to_afi_list;
             $to_ate = atencion::where('ate_fecha', 'like', $p_fecha . '%')
-            ->where('ate_turno', 'Mañana')
-            ->where('ate_pago', 'cancelado')->count();
+                ->where('ate_turno', 'Mañana')
+                ->where('ate_pago', 'cancelado')->count();
             $to_ate_pen = atencion::where('ate_fecha', 'like', $p_fecha . '%')
-            ->where('ate_turno', 'Mañana')
-            ->where('ate_pago', 'pendiente')->count();
+                ->where('ate_turno', 'Mañana')
+                ->where('ate_pago', 'pendiente')->count();
             $atencion = atencion::where('ate_fecha', 'like', $p_fecha . '%')
                 // ->where('ate_turno', 'Mañana')
                 ->join('especialidad', 'especialidad.id', '=', 'atencion.ate_especialidad')
                 ->join('pacientes', 'pacientes.pa_id', '=', 'atencion.pa_id')
                 ->join('users', 'users.id', '=', 'atencion.ate_med')
-                ->select('atencion.id as ate_id', 'pacientes.pa_hcl', 'pacientes.pa_nombre', 'pacientes.pa_appaterno',
-                 'pacientes.pa_ci', 'pacientes.pa_apmaterno', 'atencion.ate_turno', 'atencion.ate_num_ticked', 'atencion.ate_pago',
-                  'atencion.created_at', 'especialidad.esp_nombre', 'especialidad.esp_detalle','especialidad.esp_costo', 'users.usu_nombre',
-                   'users.usu_appaterno', 'users.usu_apmaterno', 'atencion.created_at')->orderBy('ate_med', 'asc')->orderBy('atencion.id', 'asc')->get();
-            
-                $totalIngreso=atencion::where('ate_fecha', 'like', $p_fecha . '%')
+                ->select(
+                    'atencion.id as ate_id',
+                    'pacientes.pa_hcl',
+                    'pacientes.pa_nombre',
+                    'pacientes.pa_appaterno',
+                    'pacientes.pa_ci',
+                    'pacientes.pa_apmaterno',
+                    'atencion.ate_turno',
+                    'atencion.ate_num_ticked',
+                    'atencion.ate_pago',
+                    'atencion.created_at',
+                    'especialidad.esp_nombre',
+                    'especialidad.esp_detalle',
+                    'especialidad.esp_costo',
+                    'users.usu_nombre',
+                    'users.usu_appaterno',
+                    'users.usu_apmaterno',
+                    'atencion.created_at'
+                )->orderBy('ate_med', 'asc')->orderBy('atencion.id', 'asc')->get();
+
+            $totalIngreso = atencion::where('ate_fecha', 'like', $p_fecha . '%')
                 ->join('especialidad', 'especialidad.id', '=', 'atencion.ate_especialidad')->get();
-                $total=0;
-                foreach ($totalIngreso as $key => $value) {
-                   $total=$total+$value['esp_costo'];
-                }
-            
-            
-                $notas = recepNotas::whereDate('created_at', $p_fecha)
+            $total = 0;
+            foreach ($totalIngreso as $key => $value) {
+                $total = $total + $value['esp_costo'];
+            }
+
+
+            $notas = recepNotas::whereDate('created_at', $p_fecha)
                 ->where('rn_cod_usu', Auth::user()->usu_ci)
                 ->get();
             return view('pdf.reporteRecepcion3')
@@ -466,7 +555,7 @@ class AtencionController extends Controller
                 ->with('totalIngreso', $totalIngreso)
                 ->with("to_ate_pen", $total);
 
-         // !=================================================
+            // !=================================================
         } elseif ($tipo == 'I_D_T') {
             $t = 'Tarde';
             $fecha = Carbon::parse($p_fecha)->format('d-m-Y');
@@ -542,11 +631,11 @@ class AtencionController extends Controller
 
         if ($res) {
 
-           $data['id']=  $new->id;
-           $data['pa']=  Pacientes::where('pa_id',$new->pa_id)->first();
-           $data['esp']=  especialidad::where('id',$new->ate_especialidad)->first();
-           $data['med']=  User::where('id',$new->ate_med)->first();
-           $data['fech']=  $new->ate_fecha;   
+            $data['id'] =  $new->id;
+            $data['pa'] =  Pacientes::where('pa_id', $new->pa_id)->first();
+            $data['esp'] =  especialidad::where('id', $new->ate_especialidad)->first();
+            $data['med'] =  User::where('id', $new->ate_med)->first();
+            $data['fech'] =  $new->ate_fecha;
         }
         return $res = (true) ? ['res' => 1, 'data' => $data] : ['res' => 0];
     }

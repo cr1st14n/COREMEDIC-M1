@@ -91,17 +91,8 @@
             <ul>
                 <li><a href="{{route('adm.Home')}}"><i class="icon  fa fa-user "></i> Inicio</a></li>
                 <li><a href="{{route('home-admRecep')}}"><i class="icon  fa fa-plus-square"></i> Recepcion</a></li>
-                <li><span><i class="icon  fa fa-briefcase"></i>RRHH</span>
-                    <ul>
-                        <li><a href="{{route('empleado_home')}}"> Personal </a></li>
-                        <li><a href=""> Subcidios </a></li>
-                    </ul>
-                <li><a href="{{route('home_area')}}"><i class="icon  fa fa-building-o"></i> Areas </a></li>
-                </li>
-                <!-- <li><a href="#" id="btn_index_pre_cotizaciones"><i class="icon fa fa-file"></i>Pre-Cotizaciones</a></li> -->
-                <!-- <li><a href="#" id="btn_index_descargosQuiEndo"><i class="icon fa fa-file"></i>Descargos Medicos</a></li> -->
-                <li class="Label label-lg  text-center">Areas y Servicios</li>
-                <li><a href="{{route('formNewEspecialidad')}} "><i class="icon  fa fa-th"></i> Especialidades</a></li>
+                <li><a href="{{route('empleado_home')}}"><i class="icon  fa fa-plus-square"></i> Personal</a></li>
+                <li><a href="{{route('formNewEspecialidad')}} "><i class="icon  fa fa-th"></i> Especialidades / Procedimientos</a></li>
             </ul>
         </nav>
     </div>

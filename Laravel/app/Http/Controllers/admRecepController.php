@@ -245,18 +245,22 @@ class admRecepController extends Controller
 
   public function InfoCajaList(Request $request)
   {
-    $especialidades = especialidad::select('id', 'nombre')->orderBy('nombre', 'asc')->get();
+    $especialidades = especialidad::select('id', 'esp_nombre','esp_detalle','esp_costo')->orderBy('esp_nombre', 'asc')->get();
     $lista = array();
     foreach ($especialidades as $es) {
       if ($request->mez == 'Anual') {
         $atencion = atencion::where('ate_especialidad', $es->id)->whereYear('created_at', $request->año)->count();
+        $sum = $atencion*$es->esp_costo;
+
+
       } else {
         $atencion = atencion::where('ate_especialidad', $es->id)
           ->whereYear('created_at', $request->año)
           ->whereMonth('created_at', $request->mez)
           ->count();
+          $sum = $atencion * $es->esp_costo;
       }
-      $var = array("nombre" => $es->nombre, "id" => $es->id, "cantidad" => $atencion);
+      $var = array("nombre" => "$es->esp_nombre / $es->esp_detalle = Bs.- $es->esp_costo " , "id" => $es->id, "cantidad" => " Bs.- $atencion - $sum");
 
       array_push($lista, $var);
     }

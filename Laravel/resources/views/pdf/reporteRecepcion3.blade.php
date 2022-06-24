@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 	<!-- Title-->
-	<title>{{ config('app.name', 'Laravel') }}</title>
+	<title>{{ config('app.name', 'COREMEDIC') }}</title>
 	<!-- Favicons -->
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('assets/ico/apple-touch-icon-144-precomposed.png') }}">
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('assets/ico/apple-touch-icon-114-precomposed.png') }}">
@@ -20,7 +20,8 @@
 </head>
 
 <body>
-	<div id="content">
+	<div class="leftMenu nav-collapse">
+
 		<div class="row">
 			<section class="panel corner-flip">
 				<div class="panel-body">
@@ -38,12 +39,11 @@
 						<hr>
 						<div class="row">
 							<div class="col-sm-12">
-								<h4>Detalles turno : {{$t}} </h4>
-								Reporte : Informe diario de actividad en "AFILIACION Y ATENCION DE PACIENTES"<br>
+								<h4> Reporte : <br> Informe diario de : "RECAUDACIÓN Y AFILIACION DE PACIENTES" </h4>
 								Total paceintes Afiliados : {{$to_afi}} <br>
 								Total pacientes atendidos : {{$to_ate}} <br>
 								<!-- Total pacientes con pago pendiente :{{$to_ate_pen}}  <br> -->
-								En fecha : {{$fecha}}
+								En fecha : {{$fecha_actual}}
 							</div>
 						</div>
 					</div>
@@ -187,6 +187,7 @@
 		</div>
 		<!-- //content > row-->
 	</div>
+
 	<!-- //content-->
 	<!--
 ////////////////////////////////////////////////////////////////////////
